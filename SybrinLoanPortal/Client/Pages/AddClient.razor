@@ -1,0 +1,36 @@
+﻿@page "/addclient"
+
+<div class="p-4">
+ <MudPaper Class="p-4">
+        <MudForm @ref="form" Model="ClientDoc" @bind-IsValid="@success">
+            <MudTextField Margin="Margin.Dense" T="string" @bind-Value="ClientDoc.FirstName" Variant="Variant.Outlined" Label="First Name" Required="true" RequiredError="First name is required!" />
+            <br />
+            <br />
+            <MudTextField Margin="Margin.Dense" T="string" @bind-Value="ClientDoc.LastName" Variant="Variant.Outlined" Label="Last Name" Required="true" RequiredError="First name is required!" />
+             <br />
+              <br />
+            <MudSelect Margin="Margin.Dense" T="string" Required RequiredError="Gender is required" @bind-Value="ClientDoc.Gender" AnchorOrigin="Origin.BottomCenter" Label="Gender" Variant="Variant.Outlined">
+            <MudSelectItem Value="@("Male")" />
+            <MudSelectItem Value="@("Female")" />
+        </MudSelect>
+         <br />
+         <br />
+            <MudTextField Margin="Margin.Dense" @bind-Value="ClientDoc.Nationality" T="string" Label="Nationality" Variant="Variant.Outlined" Required="true" RequiredError="Nationality is required!" />
+            <br />
+            <br />
+            <MudTextField Margin="Margin.Dense" T="string" @bind-Value="ClientDoc.CountryOfBirth" Label="Country Of Birth" Variant="Variant.Outlined" Required="true" RequiredError="Country of birth is required!" />
+            <br />
+            <br />
+            <div class="d-flex justify-content-around">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" OnClick="@(()=>form.Validate())">Validate</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Secondary" DisableElevation="true" OnClick="@(()=>form.Reset())" Class="mx-2">Reset</MudButton>
+            <MudButton Variant="Variant.Filled" DisableElevation="true" OnClick="@(()=>form.ResetValidation())">Reset Validation</MudButton>
+            </div>
+            <br />
+            <br />
+       <MudButton FullWidth Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" Color="Color.Success" Disabled="@(!success)" Class="ml-auto">Save</MudButton>
+
+       </MudForm>
+
+    </MudPaper>
+</div>

@@ -1,0 +1,71 @@
+﻿@page "/requestfornewaccount"
+@using Microsoft.AspNetCore.Authorization;
+
+@attribute [Authorize]
+
+<div class="p-4">
+@if(ClientDocs !=null)
+{
+    
+<MudTable Items="@ClientDocs" FixedHeader>
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Periodic Elements</MudText>
+        <MudSpacer />
+        <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>FirstName</MudTh>
+        <MudTh>LastName</MudTh>
+        <MudTh>Gender</MudTh>
+        <MudTh>CountryOfBirth</MudTh>
+        <MudTh>Nationality</MudTh>
+        <MudTh>Status</MudTh>
+        <MudTh>Action</MudTh>
+    </HeaderContent>
+
+    <RowTemplate>
+       
+        <MudTd DataLabel="FirstName">@context.FirstName</MudTd>
+        <MudTd DataLabel="LastName">@context.LastName</MudTd>
+        <MudTd DataLabel="Gender">@context.Gender</MudTd>
+        <MudTd DataLabel="CountryOfBirth">@context.CountryOfBirth</MudTd>
+        <MudTd DataLabel="Nationality">@context.Nationality</MudTd>
+        <MudTd DataLabel="Status">@context.Status</MudTd>
+        <MudTd >
+                <MudButton OnClick="@(()=>Save(context.Id,context))"
+                    Style="background-color:
+                           deepskyblue; color: white;
+                            
+                           "
+                >Activate Application</MudButton>
+
+        </MudTd>
+        
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager />
+    </PagerContent>
+    </MudTable>
+}
+<br />
+<br />
+
+            <MudPaper Class="pa-4">
+                <MudForm @ref="form">
+                <MudSelect Disabled="@IsAssigned" Margin="Margin.Dense" T="string" AnchorOrigin="Origin.BottomCenter" Label="Product Type" Variant="Variant.Outlined">
+                    <MudSelectItem Value="@("Tyrannosaur")" />
+                    <MudSelectItem Value="@("Triceratops")" />
+                    <MudSelectItem Value="@("Henon Rex")" />
+                </MudSelect>    
+                <br />
+                <br />
+            <MudDatePicker Disabled="@IsAssigned" Color="Color.Success" TransformOrigin="Origin.BottomCenter" AnchorOrigin="Origin.BottomCenter" Variant="Variant.Outlined" Margin="Margin.Dense" Label="Basic example" @bind-Date="Date" />
+                <br />
+                <br />
+                    <MudButton Variant="Variant.Filled" FullWidth="true" Color="Color.Success" Class="ml-auto">Save</MudButton>
+                <br />
+                <br />
+                </MudForm>
+            </MudPaper>
+
+</div>
